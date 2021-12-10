@@ -1,0 +1,24 @@
+nav{
+    width: 100vw;
+    height: 10vh;
+    background-color: rgb(238, 203, 48);
+}
+.myLogo{
+    width: 5vw;
+    height: 5vh;
+    border-radius: 50%;
+}
+
+.mySearchInput{
+    width: 40%;
+    margin-left: 2%;
+    height: 50%;
+    margin: auto auto;
+}
+
+.myInput{
+    width: 10vw;
+}
+
+
+

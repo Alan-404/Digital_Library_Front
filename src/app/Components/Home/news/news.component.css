@@ -1,0 +1,18 @@
+*{
+    font-family: helvetica;
+}
+
+
+h1{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+img {
+    width: 100%;
+}
+
+pre{
+    white-space:pre-wrap;
+    font-size: 17px;
+}

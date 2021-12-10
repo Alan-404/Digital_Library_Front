@@ -1,0 +1,26 @@
+<h1>Thêm Tin Tức</h1>
+<hr />
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon3">Tiêu Đề</span>
+  <input (keyup)="getInfo($event)" name = "title" type="text" class="form-control"  aria-describedby="basic-addon3">
+</div>
+<div class="form-floating">
+    <textarea (keyup)="getInfo($event)" name = "introduction" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
+    <label for="floatingTextarea">Lời Giới Thiệu</label>
+</div>
+<div class="d-flex flex-column my-4">
+    <label>Hình Tiêu Đề</label>
+    <input (change)="upThumnail($event)" class = "mt-4" type="file" accept="*.png.jpg">
+    <img class = "showImage" [src]="this.urlImage"/>       
+</div>
+<ckeditor #content class = "myContent" [editor]="Editor" (ready)="onReady($event)"></ckeditor>
+<!-- <angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig"></angular-editor> -->
+<button (click)="show()">Thêm Tin Tức</button>
+
+
+
+
+
+
+
+

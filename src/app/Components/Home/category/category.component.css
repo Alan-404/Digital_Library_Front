@@ -1,0 +1,41 @@
+
+
+.myThumnail{
+    width:30vw;
+    height: 40vh;
+    border-radius: 25%;
+}
+
+.myFirst{
+    width: 70%;
+    margin: auto auto;
+}
+
+.myDescription{
+    width: 30vw;
+}
+
+.myText{
+    font-size: 17px;
+}
+
+.thumnailBook{
+    height: 200px;
+    width: 8rem;
+}
+.myButton{
+    width: 10rem;
+    margin: auto auto;
+}
+
+button{
+    margin: auto auto;
+    padding: 5px;
+    border: 2px solid gray;
+}
+
+
+.myItem:hover{
+    padding: 10px;
+    background-image: linear-gradient(45deg, pink, yellow)
+}

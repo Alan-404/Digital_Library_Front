@@ -1,0 +1,24 @@
+<div class="example-form text-center p-4 py-5 myForm">
+    <h1>LOGIN ACCOUNT</h1>
+    <div class = "text-danger mt-1 h5">{{message}}</div>
+    <div class = "d-flex flex-column myInput">
+        <mat-form-field class="example-full-width px-4" appearance="fill">
+            <mat-label>Username</mat-label>
+            <input type = "text" (keyup) = "onKey($event)" name = "username" matInput/>
+        </mat-form-field>
+        <mat-form-field class="example-full-width px-4" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type = "password" (keyup) = "onKey($event)" name = "password" matInput/>
+        </mat-form-field>
+        <div class = "d-flex ml-5 myLink justify-content-between">
+            <div class = "d-flex">
+                <p class ="">Do not have account? </p><a class="registerLink" routerLink = "/auth/register">Register here</a> 
+            </div>
+            <div class = "d-flex">
+                <p class ="mr-4">Forgot password? </p><a class="registerLink" routerLink = "/auth/forgotPass">Click here</a>
+            </div>
+            
+        </div>
+        <button (click) = "login()" mat-raised-button color="accent">Login</button>
+    </div>
+</div>

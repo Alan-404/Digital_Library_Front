@@ -1,0 +1,66 @@
+<div class="example-form text-center p-4 py-5 myForm">
+    <h1>REGISTER USER</h1>
+    <div class = "text-danger mt-1 h5">{{message}}</div>
+
+    
+    <div class="d-flex">
+        <div class = "d-flex flex-column myInput">
+            <div class = "d-flex justify-content-between px-4">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>First Name</mat-label>
+                    <input name = "firstName" type = "text" (keyup) = "onKey($event)" matInput/>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Middle Name</mat-label>
+                    <input name = "middleName" type = "text" (keyup) = "onKey($event)" matInput/>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Last Name</mat-label>
+                    <input name = "lastName" type = "text" (keyup) = "onKey($event)" matInput/>
+                </mat-form-field>
+            </div>
+            <mat-form-field class="example-full-width px-4" appearance="fill">
+                <mat-label>Phone</mat-label>
+                <input name = "phone" type = "text" (keyup) = "onKey($event)" matInput/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width px-4" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input name = "email" type = "text" (keyup) = "onKey($event)" matInput/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width px-4" appearance="fill">
+                <mat-label>Birthday</mat-label>
+                <input (change)="getDate($event)" name = "bDate" type = "date" (keyup) = "onKey($event)" matInput/>
+            </mat-form-field>
+        </div>
+
+
+        <div class="d-flex flex-column inforAccount">
+            <mat-form-field class="example-full-width p-1" appearance="fill">
+                <mat-label>Username</mat-label>
+                <input name = "username" type = "text" (keyup) = "onKey($event)" matInput/>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width p-1" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input name = "password" type = "password" (keyup) = "onKey($event)" matInput/>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width p-1" appearance="fill">
+                <mat-label>Re-Password</mat-label>
+                <input name = "rePass" type = "password" (keyup) = "onKey($event)" matInput/>
+            </mat-form-field>
+        </div>
+
+        <div class="d-flex flex-column mx-4">
+            <input (change)="upLoadImage($event)" type = "file" accept="*.jpg.png"/>
+            <img class="mt-4 userAvatar" [src] = "avatar"/>
+        </div>
+    </div>
+    
+
+    <div class = "d-flex ml-5 myLink">
+        <p class ="">Already have account? </p><a class="changeLink" routerLink = "/auth/login">Login here</a> 
+    </div>
+    <button (click)="registerUser()" mat-raised-button color="accent">Register</button>
+</div>
+

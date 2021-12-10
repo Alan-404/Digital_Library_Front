@@ -1,0 +1,58 @@
+<div class="container mt-3">
+    <div class = "d-flex w3-animate-right">
+        <img src="{{bookInfo.imageLink}}"/>
+        <div class = "mx-3">
+            <h1>{{bookInfo.name}}</h1>
+            <h2>Tác Giả: {{authorName}}</h2>
+            <h2>Thể Loại: {{this.infoPage.categoryName}}</h2>
+            <h2>Mô Tả</h2>
+            <div class = "myDescription">{{bookInfo.description}}</div>
+            <a class = "btn linkRead bg-info mt-4" href = "{{this.infoPage.book.linkPdf}}">Đọc Sách</a>
+        </div>
+    </div>
+
+    
+
+    <div class = "mt-4">
+        <h2>Đề Xuất</h2>
+        <hr />
+        <div class = "d-flex justify-content-between">
+            <div *ngFor = "let recommend of this.show" class="card {{this.animate}}" style="width: 18rem;" (click)="go()">
+                <img [src]="recommend.imageLink" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">{{recommend.name}}</p>
+                  <a routerLink = "/home/book" [queryParams]="{id: recommend._id}" class="btn btn-primary">Đọc Ngay</a>
+                </div>
+              </div>
+        </div>
+        <button (click)="prev()" class="myBtn carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button (click)="next()" class="myBtn carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class = "mt-4">
+        <h2>Bình Luận</h2>
+        <hr />
+        <div class = "d-flex">
+            <img class = "avaComment" src = "https://account.samsung.com/membership/assets/images/intro/intro_mbr.png"/>
+            <div class = "d-flex flex-column">
+                <input (keyup)="getComment($event)" type = "text" class = "addComment p-2"/>
+                <button (click)="addComment()" class = "btnAddComment p-2 mt-2 bg-success text-light">Thêm Comment</button>
+            </div>           
+        </div>
+        <div *ngFor = "let comment of this.allComment.comments; let i = index" class = "d-flex m-3">
+            <img class = "avaComment" [src]="this.allComment.users[i].avatar"/>
+            <div class = "contentComment">
+                <h2 class = "mt-2">{{this.allComment.users[i].lastName}}</h2>
+                <hr />
+                <p>{{comment.content}}</p>
+            </div>
+        </div>
+    </div>
+    
+</div>

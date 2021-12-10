@@ -1,0 +1,54 @@
+<h1>Danh Sách Admin</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Họ và Tên</th>
+        <th scope="col">Số điện thoại</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ngày sinh</th>
+        <th scope="col">Ảnh đại diện</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ad of this.inforPage.admins; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{ad.firstName + " " + ad.middleName + " " + ad.lastName}}</td>
+            <td>{{ad.phone}}</td>
+            <td>{{ad.email}}</td>
+            <td>{{ad.bDate}}</td>
+            <td><img class="userAvatar" [src]="ad.avatar"/></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h1 class="mt-4">Danh Sách Thành Viên</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Họ và Tên</th>
+        <th scope="col">Số điện thoại</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ngày sinh</th>
+        <th scope="col">Ảnh đại diện</th>
+        <th scope="col">Chỉnh sửa</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let mem of this.inforPage.members; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{mem.firstName + " " + mem.middleName + " " + mem.lastName}}</td>
+            <td>{{mem.phone}}</td>
+            <td>{{mem.email}}</td>
+            <td>{{mem.bDate}}</td>
+            <td><img class="userAvatar" [src]="mem.avatar"/></td>
+            <td class="d-flex flex-column">
+                <button type="button" class="btn btn-success my-2">Sửa thông tin</button>
+                <button type="button" class="btn btn-danger my-2">Xóa người dùng</button>
+                <button type="button" class="btn btn-primary my-2">Ủy quyền admin</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

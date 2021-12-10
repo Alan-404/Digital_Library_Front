@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <div class = "load">
+    <div class = "d-flex myAuthors">
+      <div *ngFor = 'let author of this.renderAuthors' class = "mx-4 text-center show {{animation}}" (click)="routeAuthorPage(author._id)">
+          <img class = "authorAvatar" src = "{{author.imageLink}}"/>
+          <h2 class = "mt-2">{{author.name}}</h2>
+      </div>
+  </div>
+  <button (click)="changePrev()"  class="carousel-control-prev text-dark prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span  class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span  class="visually-hidden">Previous</span>
+  </button>
+  <button (click)="changeNext()" class="carousel-control-next next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+  <hr />
+  <h2>Tin Tức</h2>
+  <div class = "d-flex flex-wrap justify-content-between">
+    <div *ngFor='let news of this.showNews' (click)="routeNewsPage(news._id)" class="card mx-3 w3-animate-bottom my-3" style="width: 18rem;">
+      <img src="{{news.thumnail}}" class="card-img-top myThumnail" alt="...">
+      <div class="card-body">
+        <h4 class="card-title"><strong>{{news.title}}</strong></h4>
+      </div>
+    </div>
+  </div>
+  </div>
+    
+</div>
+
+
+<div *ngIf = "showSpinner">
+  <app-spinner-effect></app-spinner-effect>
+</div>

@@ -1,0 +1,15 @@
+.dark-overlay{
+    background-color: rgba(0,0,0,0.5);
+    width: 100vw;
+    height: 100vh;
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+
+.mySpinner{
+    position:absolute;
+    top: 20vh;
+    left: 45vw;
+}
+

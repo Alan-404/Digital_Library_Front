@@ -1,0 +1,33 @@
+<div class="container mt-4 w3-animate-bottom">
+    <h1>{{this.infoPage.blog.title}}</h1>
+    <h3>{{this.infoPage.blog.introduction}}</h3>
+    <div class = "d-flex">
+        <p class = "mx-4">Người Viết: <i>{{this.infoPage.writer}}</i></p>
+        <i class="fas fa-marker" aria-hidden="true"></i>
+    </div>
+
+    <hr />
+    <div [innerHTML] = "this.infoPage.blog.content">
+
+    </div>
+    <hr />
+    <div>
+        <h2>Bình Luận</h2>
+        <div class = "d-flex">
+            <img class = "avaComment" src = "https://account.samsung.com/membership/assets/images/intro/intro_mbr.png"/>
+            <div class = "d-flex flex-column">
+                <input (keyup)="getComment($event)" type = "text" class = "addComment p-2"/>
+                <button (click)="addComment()" class = "btnAddComment p-2 mt-2 bg-success text-light">Thêm Comment</button>
+            </div>
+            
+        </div>
+        <div *ngFor = "let comment of this.allComment.comments; let i = index" class = "d-flex m-3">
+            <img class = "avaComment" [src]="this.allComment.users[i].avatar"/>
+            <div class = "contentComment">
+                <h2 class = "mt-2">{{this.allComment.users[i].lastName}}</h2>
+                <hr />
+                <p>{{comment.content}}</p>
+            </div>
+        </div>
+    </div>
+</div>

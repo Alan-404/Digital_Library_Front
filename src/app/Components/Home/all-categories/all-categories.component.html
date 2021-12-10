@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div id="carouselExampleIndicators" class="carousel slide mt-3" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div *ngFor = 'let info of this.getAll.allInfo; let index = index;let isFirst = first' [ngClass]="{active:isFirst}" class="carousel-item active">
+        <a routerLink = "/home/category" [queryParams]="{id: info.category._id}"><img src="{{info.category.imageLink}}" class="d-block w-100" alt="..."></a>
+      </div>      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <div *ngFor = 'let info of this.getAll.allInfo' class = "category mt-3 p-3 w3-animate-bottom">
+    <h2><a class = "text-decoration-none" routerLink = "/home/category" [queryParams]="{id: info.category._id}">{{info.category.name}}</a></h2>
+    <div class = "d-flex justify-content-between flex-wrap myBooks text-center">
+      <div *ngFor = 'let book of info.books; let index = index;let isFirst = first' [ngClass]="{active:isFirst}" class="card mt-2 mx-2" style="width: 18rem;">
+        <img src="{{book.imageLink}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h3 class="card-title"><b>{{book.name}}</b></h3>
+          <a routerLink="/home/book" [queryParams]="{id: book._id}" class="btn btn-primary">Đọc Ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>   
+</div>

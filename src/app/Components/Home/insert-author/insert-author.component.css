@@ -1,0 +1,14 @@
+span{
+    font-size: 15px;
+}
+
+.showImage{
+    width: 300px;
+    height: 300px;
+    background: none;
+    background: none;
+}
+
+.myAlert{
+    position:absolute;
+}

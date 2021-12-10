@@ -1,0 +1,17 @@
+img {
+    height: 40vh;
+    width: 100%;
+    margin: auto auto;
+}
+.category{
+    border: 2px solid black;
+    border-radius: 20px;
+}
+.text-decoration-none{
+    color: rgb(124, 7, 124);
+}
+
+
+nav{
+    margin-top: 25px;
+}

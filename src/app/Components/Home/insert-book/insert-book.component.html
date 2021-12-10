@@ -1,0 +1,36 @@
+<div class="container mt-4">
+    <div>
+        <h1 class = "w3-animate-top">Thêm Sách</h1>
+        <hr class = "w3-animate-left" />
+    </div>
+    <span class = "text-success mx-4">{{this.listen.message}}</span>
+    <div class = "w3-animate-bottom">
+        <div  class="form-floating mb-3">
+            <input (keyup)="getInfo($event)" name="name" type="text" class="form-control" id="floatingInput" placeholder="Tên Tác Giả">
+            <label for="floatingInput">Tên Sách</label>
+        </div>
+        <div  class="form-floating mb-3">
+            <input (keyup)="getInfo($event)" name="author" type="text" class="form-control" id="floatingInput" placeholder="Tên Tác Giả">
+            <label for="floatingInput">Tên Tác Giả</label>
+        </div>
+        <div  class="form-floating mb-3">
+            <input (keyup)="getInfo($event)" name="category" type="text" class="form-control" id="floatingInput" placeholder="Tên Tác Giả">
+            <label for="floatingInput">Tên Danh Mục</label>
+        </div>
+        <div class="form-floating">
+            <textarea #showAll (keyup)="getInfo($event)" name = "description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
+            <label for="floatingTextarea2">Mô Tả</label>
+        </div>
+        <div class="d-flex flex-column mt-4">
+            <label>Ảnh Bìa Sách</label>
+            <img class = "showImage" src= "{{this.urlImage}}"/>
+            <input (change)="upImage($event)" class = "mt-4" type="file" accept="*.png.jpg">       
+        </div>
+        <div class="d-flex flex-column mt-4">
+            <label>File pdf</label>
+            <input (change)="upPdf($event)" class = "mt-4" type="file" accept="*.pdf">       
+        </div>
+        <button (click)="insertBook()" class = "mt-4 btn bg-info">Thêm Tác Giả</button>
+    </div>
+</div>
+

@@ -1,0 +1,50 @@
+<div class="container my-4">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      
+    </div>
+    <div class="carousel-inner">
+      <div *ngFor = 'let ad of ads; let index = index;let isFirst = first' [ngClass]="{active:isFirst}" class="carousel-item active">
+        <img src="{{ad.imageLink}}" class="d-block w-100" alt="...">
+      </div>      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class = "mt-4">
+    <h2>Tin Tức</h2>
+    <div class = "d-flex flex-wrap justify-content-between">
+      <div *ngFor='let news of this.showNews' (click)="routeNewsPage(news._id)" class="card mx-3 w3-animate-bottom" style="width: 18rem;">
+        <img src="{{news.thumnail}}" class="card-img-top myThumnail" alt="...">
+        <div class="card-body">
+          <h4 class="card-title"><strong>{{news.title}}</strong></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class = "mt-4">
+    <h2>Sách Mới</h2>
+    <div class = "d-flex flex-wrap justify-content-between">
+      <div *ngFor='let book of this.booksShow' (click)="routeBookPage(book._id)" class="card mx-3 w3-animate-bottom" style="width: 18rem;">
+        <img src="{{book.imageLink}}" class="card-img-top myThumnail" alt="...">
+        <div class="card-body">
+          <h4 class="card-title"><strong>{{book.name}}</strong></h4>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf = "showSpinner">
+  <app-spinner-effect></app-spinner-effect>
+</div>

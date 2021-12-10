@@ -1,0 +1,61 @@
+<div class="container mt-4 myBackground">
+    <div class = "frameAvatar">
+        <img src="{{this.infoAuthor.author.imageLink}}" class="avatar w3-animate-right" alt="...">
+    </div>
+    <div class="accordion mt-4 w3-animate-bottom" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              Nhà Văn: {{this.infoAuthor.author.name}}
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+            <pre class="accordion-body myDescription">
+{{this.infoAuthor.author.description}}
+            </pre>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+              Tác Phẩm
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse book" aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body d-flex">
+                <div (click)="goBookPage(book._id)" *ngFor='let book of this.renderBook' class="card mx-2 {{animation}}" style="width: 18rem;">
+                    <img src="{{book.imageLink}}" class="card-img-top authorBook" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title">{{book.name}}</h3>
+                    </div>
+                  </div>
+            </div>
+
+
+            <div>
+              <button (click)="prevPage()" *ngIf = "this.allBooks[0].length != 0" class="carousel-control-prev prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              </button>
+  
+              <button (click)="nextPage()" *ngIf = "this.allBooks[0].length != 0" class="carousel-control-next next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+            
+
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              Bình Luận
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+            <div class="accordion-body">
+              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

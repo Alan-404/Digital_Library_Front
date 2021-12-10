@@ -1,0 +1,26 @@
+<div class="container mt-4 w3-animate-bottom">
+    <div class ="d-flex justify-content-between">
+        <div>
+            <h1>
+                Blog
+            </h1>
+            <h3>Nơi Chia Sẻ Tâm Hồn Đọc Giả</h3>
+        </div>
+        <i *ngIf="allowAddBlog" (click)="addBlog()" class="fa fa-plus h1" aria-hidden="true"></i>
+    </div>
+    
+    <hr />
+    <div class="list-group">
+        <a *ngFor="let blog of infoPage.blogs.reverse(); let i = index;" routerLink="/home/blog" [queryParams]="{id: blog._id}" class="list-group-item list-group-item-action d-flex my-4">
+            <img class = "myThumnail" src="{{blog.thumnail}}"/>
+            <div class = "mx-4 mt-3">
+                <h1>{{blog.title}}</h1>
+                <hr />
+                <pre>
+{{blog.introduction}}
+                </pre>
+                <p>Người Viết: <i>{{this.showUsers[i]}}</i></p>
+            </div>
+        </a>       
+    </div>
+</div>

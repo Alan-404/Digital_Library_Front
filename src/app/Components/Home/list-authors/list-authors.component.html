@@ -1,0 +1,28 @@
+<div class = " lib">
+    <h1>Danh Sách Tác Giả</h1>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên Tác Giả</th>
+            <th scope="col">Hình Ảnh</th>
+            <th>Chỉnh Sửa/Cập Nhật</th>
+          </tr>
+        </thead>
+        <tbody class = "">
+            <tr *ngFor = "let author of this.infoPage.authors; let i = index" [ngClass]="'w3-animate-bottom'">
+                <td>{{i+1}}</td>
+                <td>{{author.name}}</td>
+                <td>
+                    <img class = "myAuthor" src="{{author.imageLink}}"/>
+                </td>
+                <td class="d-flex flex-column">
+                    <button type="button" class="btn btn-success my-2 w-50">Xem Thêm</button>
+                    <button (click) = "deleteAuthor(author._id, author.imageLink)" type="button" class="btn btn-danger my-2 w-50">Xóa Tác Giả</button>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+
+
+</div>

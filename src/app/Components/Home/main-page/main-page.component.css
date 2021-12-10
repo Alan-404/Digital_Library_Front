@@ -1,0 +1,24 @@
+img {
+    height: 60vh;
+    margin: auto auto;
+}
+
+.category{
+    border: 2px solid yellow;
+    border-radius: 20px;
+}
+
+.mySpinner {
+    position:absolute;
+    top: 40vh;
+    left: 50vw;
+}
+
+.myThumnail{
+    width: 100%;
+    height: 15rem;
+}
+
+.card{
+    cursor: pointer;
+}

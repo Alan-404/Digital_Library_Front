@@ -1,0 +1,32 @@
+.myBackground{
+    /* position:absolute; */
+    width: 100vw;
+    /* background-color: rgb(243, 235, 235); */
+    position:absolute;
+    background-image: linear-gradient(45deg, rgba(240, 228, 65, 0.5), rgba(226, 191, 35, 0.5));
+}
+
+img{
+    width: 2rem;
+    height: 2rem;
+}
+
+footer{
+    height: 7vh;
+    background-image: linear-gradient(90deg, rgb(255, 196, 0), orange);
+    width: 100vw;
+    bottom: 0;
+}
+
+.contentFooter{
+    width: 80%;
+    margin: auto auto;
+    margin-bottom: 0;
+}
+
+.mySpinner {
+    position:absolute;
+    top: 40vh;
+    left: 50vw;
+}
+

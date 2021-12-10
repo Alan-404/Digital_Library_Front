@@ -1,0 +1,36 @@
+<div class="container mt-4">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div *ngFor="let slide of this.slideShowNews; let index = index; let isFirst = first" [ngClass]="{active:isFirst}" (click)="goNews(slide._id)"  class="carousel-item mySlideShow">
+            <img class = "mySlide" [src]="slide.thumnail" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h1>{{slide.title}}</h1>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div>
+      <div *ngFor = "let news of this.infoPage.news" class = "my-4 myNews p-3" (click)="goNews(news._id)">
+        <h2>{{news.title}}</h2>
+        <hr />
+        <div class = "d-flex">
+          <img [src] = "news.thumnail" class = "thumnailNews" />
+          <p class = "mx-3 myIntro">{{news.introduction}}</p>
+        </div>
+      </div>
+    </div>
+</div>

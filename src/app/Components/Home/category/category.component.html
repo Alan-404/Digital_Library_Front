@@ -1,0 +1,31 @@
+<div class = "myBackground">
+    <div class="container mt-4">
+        <div class="myContent">
+            <div class = "d-flex myFirst w3-animate-bottom">
+                <img src="{{this.infoPage.category.imageLink}}" class="img-thumbnail myThumnail float-end" alt="...">
+                <div class = "mx-4 myDescription">
+                    <h1>{{this.infoPage.category.name}}</h1>
+                    <div class = "myText">
+                        {{this.infoPage.category.description}}
+                    </div>
+                </div>
+            </div>
+            <div class="list-group m-4 w3-animate-bottom">
+                <a class = "d-flex m-4 text-decoration-none text-dark border p-2 myBook list-group-item-action myItem" *ngFor = 'let book of this.infoPage.books; let i = index;' routerLink = "/home/book" [queryParams]="{id: book._id}">
+                    <img class = "thumnailBook" src = "{{book.imageLink}}"/>
+                    <div class = "mx-5">
+                        <h2>{{book.name}}</h2>
+                        <h3>Tác Giả: {{this.infoPage.authorName[i]}}</h3>
+                        <p>{{book.description}}</p>
+                        <a routerLink="/home/book" [queryParams]="{id: book._id}" class="btn btn-primary">Đọc Ngay</a>
+                    </div>
+                </a>           
+            </div>
+            <div class = "myButton">
+                <button class = "bg-success text-light">Xem Thêm</button>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>

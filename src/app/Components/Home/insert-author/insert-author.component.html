@@ -1,0 +1,42 @@
+<div class="container mt-4">  
+      <!-- Modal -->
+    <div>
+        <h1 class = "w3-animate-top">Thêm Tác Giả</h1>
+        <hr class = "w3-animate-right" />
+    </div>
+    <div class = "w3-animate-bottom">
+        <div  class="form-floating mb-3">
+            <input (keyup)="getInfo($event)" name="name" type="text" class="form-control" id="floatingInput" placeholder="Tên Tác Giả">
+            <label for="floatingInput">Tên Tác Giả</label>
+        </div>
+        <div class="form-floating">
+            <textarea (keyup)="getInfo($event)" name = "description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Mô Tả Về Tác Giả</label>
+        </div>
+        <div class="d-flex flex-column mt-4">
+            <label>Hình Ảnh Tác Giả</label>
+            <img class = "showImage" src = "{{this.urlImage}}"/>
+            <input (change)="upFile($event)" class = "mt-4" type="file" accept="*.png.jpg">       
+        </div>
+        <!-- <button (click)="insertAuthor()" class = "mt-4 btn bg-info">Thêm Tác Giả</button> -->
+        <button (click)="insertAuthor()" type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Thêm Tác Giả
+        </button>
+    </div>
+    <div *ngIf = "showNotice">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thông Báo</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {{this.listen.message}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

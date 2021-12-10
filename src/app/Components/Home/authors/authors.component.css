@@ -1,0 +1,48 @@
+figure{
+    width: 30vw;
+}
+
+.card{
+    cursor: pointer;
+}
+
+.authorAvatar{
+    border-radius: 50%;
+    height: 10rem;
+    width: 12rem;
+}
+
+button{
+    background-color: rgb(219, 214, 214);
+    height: 20vh;
+    top: 3vh;
+    width: 5rem;
+}
+
+.show{
+    width: 60%;
+    cursor: pointer;
+}
+
+
+.next{
+    right: 8vw;
+    background-image: linear-gradient(45deg, orange, rgb(214, 55, 55));
+}
+
+.prev{
+    left: 8vw;
+    background-image: linear-gradient(45deg, orange, rgb(214, 55, 55));
+}
+
+.myThumnail{
+    width: 100%;
+    height: 15rem;
+}
+
+.mySpinner {
+    position:absolute;
+    top: 30vh;
+    left: 50vw;
+}
+
