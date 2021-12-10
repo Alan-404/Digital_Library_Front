@@ -1,0 +1,7 @@
+.myBackground{
+    background-image: url('https://www.nicepng.com/png/full/122-1227593_gamebook-background-book-background-images-png.png');
+    height: 100vh;
+    background-size: cover;
+    width: 100vw;
+    position:absolute;
+}

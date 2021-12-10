@@ -36,4 +36,9 @@ export class AccountService {
   getAllUsers():Observable<{}>{
     return this.request.get<{}>(`http://localhost:5000/account/getAllUsers`);
   }
+
+
+  changePassword(oldPass: string, newPass: string):Observable<any>{
+    return this.request.put<any>('http://localhost:5000/account/change', {oldPassword: oldPass, newPassword: newPass}, headerOption)
+  }
 }

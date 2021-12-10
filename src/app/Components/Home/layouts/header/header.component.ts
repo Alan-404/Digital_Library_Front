@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToMyInfo(){
-    this.router.navigate(['home/me']);
+    this.router.navigate(['home/info/my-info']);
   }
 
 

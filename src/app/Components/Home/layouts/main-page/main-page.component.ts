@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdService } from 'src/app/Services/ad.service';
-import {Ad} from '../../../Interfaces/Ad';
+import {Ad} from '../../../../Interfaces/Ad';
 import { Books } from 'src/app/Interfaces/Books';
 import { GetBookService } from 'src/app/Services/get-book.service';
 import { NewsService } from 'src/app/Services/news.service';

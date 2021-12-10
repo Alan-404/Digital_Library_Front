@@ -1,0 +1,100 @@
+<div>
+    <div *ngIf = "!this.edit" class = "d-flex w3-animate-left">
+        <div class = "firstPage text-center">
+            <i *ngIf="!this.avatar" class="fa fa-user" aria-hidden="true"></i>
+            <img *ngIf="this.avatar" src = "{{this.infoPage.user.avatar}}"/>
+            <div class = "mt-4">
+                <h1>Độc Giả</h1>
+                <h1>{{this.infoPage.user.firstName + ' ' + this.infoPage.user.middleName + ' ' + this.infoPage.user.lastName}}</h1>
+            </div>
+            <div class = "info">
+                <p class = "showInfo">Email:</p>
+                <p>{{this.infoPage.user.email}}</p>
+                <p class = "showInfo">Điện Thoại:</p>
+                <p>{{this.infoPage.user.phone}}</p>
+                <p class = "showInfo">Châm Ngôn</p>
+                <pre>
+    {{this.infoPage.user.maxim}}
+                </pre>
+            </div>
+        </div>
+        <div class = "sePage text-center mt-5 w3-animate-right">
+            <img class="decor" src="https://www.paulkipnes.com/wp-content/themes/RPK/images/book-background.png"/>
+        </div>
+    </div>
+    
+    <div class="d-flex" *ngIf = "this.edit">
+
+        <div class="firstPage">
+            <div class = "text-center mb-3">
+                <i *ngIf="!this.avatar" class="fa fa-user" aria-hidden="true"></i>
+                <img *ngIf="this.avatar" src = "{{this.infoPage.user.avatar}}"/>
+            </div>
+    
+            <div class="input-group mb-3 myInput">
+                <span class="input-group-text">Tên độc giả</span>
+                <input  name = "firstName" type="text" aria-label="First name" class="form-control" value = {{this.infoPage.user.firstName}}>
+                <input  name = "middleName" type="text" aria-label="Last name" class="form-control" value = {{this.infoPage.user.middleName}}>
+                <input  name = "lastName" type="text" aria-label="Last name" class="form-control" value = {{this.infoPage.user.lastName}}>
+            </div>
+
+            <div class="input-group mb-3 myInput">
+                <span class="input-group-text" id="basic-addon1">Số điện thoại</span>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value = "{{this.infoPage.user.phone}}">
+            </div>
+
+            <div class="input-group mb-3 myInput">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value = "{{this.infoPage.user.email}}">
+            </div>
+
+            <div class="input-group mb-3 myInput">
+                <span class="input-group-text" id="basic-addon1">Ngày sinh</span>
+                <input type="date" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value = "{{this.infoPage.user.bDate}}">
+            </div>
+
+            <div class="form-floating myInput">
+                <textarea class="form-control" style="height: 200px">{{this.infoPage.user.maxim}}</textarea>
+                <label for="floatingTextarea2">Châm ngôn</label>
+            </div>
+            <button type="button" class="btn btn-primary btnEdit my-4">Thay đổi thông tin</button>
+        </div>
+
+        <div class="sePage pageAccount">
+            <h1>Tài khoản của bạn:</h1>
+            <span class="h4 {{showColorMessage}} mb-3">{{message}}</span>
+            <div class="input-group mb-3 authInput">
+                <span class="input-group-text" id="basic-addon1">Username</span>
+                <input readonly type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" value = "{{this.infoPage.username}}">
+            </div>
+            <button *ngIf = "!showFormChange" (click)="showFormChangePassword()" type="button" class="btn btn-info text-light">Đổi password</button>
+            <div *ngIf = "showFormChange" class="my-4">
+                <div class="input-group mb-3 authInput">
+                    <span class="input-group-text" id="basic-addon1">Password</span>
+                    <input (keyup)="getInfo($event)" name = "oldPass" type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1" >
+                </div>
+                <div class="input-group mb-3 authInput">
+                    <span class="input-group-text" id="basic-addon1">Password mới</span>
+                    <input (keyup)="getInfo($event)" name = "newPass" type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3 authInput">
+                    <span class="input-group-text" id="basic-addon1">Nhập lại password</span>
+                    <input (keyup)="getInfo($event)" name = "rePass" type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <button (click)="changePassoword()" type="button" class="btn btn-success">Đổi password mới</button>
+                <button (click)= "cancelShowForm()" type="button" class="btn btn-warning mx-3">Hủy</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <button (click)="showInfo()" class="carousel-control-prev changePage" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button (click)="editInfo()" class="carousel-control-next changePage" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    
+</div>
