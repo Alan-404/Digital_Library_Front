@@ -45,6 +45,7 @@ pre{
 .sePage{
     width: 40%;
     margin-left: 5rem;
+    margin-top: 15vh;
 }
 
 .decor{
@@ -73,4 +74,13 @@ pre{
 .btnEdit{
     width: 10vw;
     margin-left: 10vw;
+}
+
+.myBlog{
+    background: none;
+    border: none;
+}
+
+i{
+    font-size: 15px;
 }

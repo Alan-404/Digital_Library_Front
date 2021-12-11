@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/Services/account.service';
-
+import { BlogService } from 'src/app/Services/blog.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-my-info',
   templateUrl: './my-info.component.html',
@@ -8,7 +9,7 @@ import { AccountService } from 'src/app/Services/account.service';
 })
 export class MyInfoComponent implements OnInit {
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private blogService: BlogService, private router: Router) { }
 
   avatar: boolean = false;
 
@@ -17,13 +18,17 @@ export class MyInfoComponent implements OnInit {
   showFormChange = false;
 
   infoPage: any = {user: {}}
+  infoBlogs: any = {}
   ngOnInit(): void {
     this.accountService.getAllInfo().subscribe(response => {
       this.infoPage = response;
-      console.log(response);
       if (this.infoPage.user.avatar)
         this.avatar = true;
         
+    })
+
+    this.blogService.allBlogsByToken().subscribe(response => {
+      this.infoBlogs = response;
     })
   }
 
@@ -78,12 +83,9 @@ export class MyInfoComponent implements OnInit {
   }
 
 
-  showInfo(){
-    this.edit = false;
-  }
 
-  editInfo(){
-    this.edit = true;
+  changePage(){
+    this.edit = !this.edit;
   }
 
 

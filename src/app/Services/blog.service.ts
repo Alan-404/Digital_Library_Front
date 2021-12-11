@@ -30,4 +30,8 @@ export class BlogService {
     return this.request.post<{}>(`http://localhost:5000/blog/insert`,blog, headerOption);
   }
 
+  allBlogsByToken():Observable<any>{
+    return this.request.get<any>(`http://localhost:5000/blog/token`, headerOption)
+  }
+
 }
