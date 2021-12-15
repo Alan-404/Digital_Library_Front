@@ -24,4 +24,13 @@ export class CommentService {
   getAllCommentIdObjId(id:string):Observable<{}>{
     return this.http.get<{}>(`http://localhost:5000/comment/all?id=${id}`);
   }
+
+
+  editComment(id: string, content: string):Observable<any>{
+    return this.http.put<any>(`http://localhost:5000/comment/edit`, {id, content})
+  }
+
+  deleteComment(id: string):Observable<any>{
+    return this.http.delete<any>(`http://localhost:5000/comment/delete?id=${id}`)
+  }
 }

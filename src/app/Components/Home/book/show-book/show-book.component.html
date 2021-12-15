@@ -41,8 +41,8 @@
         <div class = "d-flex">
             <img class = "avaComment" src = "https://account.samsung.com/membership/assets/images/intro/intro_mbr.png"/>
             <div class = "d-flex flex-column">
-                <input (keyup)="getComment($event)" type = "text" class = "addComment p-2"/>
-                <button (click)="addComment()" class = "btnAddComment p-2 mt-2 bg-success text-light">Thêm Comment</button>
+                <input (keyup)="getComment($event)" type = "text" class = "addComment p-2" value = "{{commentContent}}"/>
+                <button (click)="addComment()" type="button" class="btn btn-outline-success mt-2 w-25">Thêm Bình Luận</button>
             </div>           
         </div>
         <div *ngFor = "let comment of this.allComment.comments; let i = index" class = "d-flex m-3">
@@ -50,7 +50,17 @@
             <div class = "contentComment">
                 <h2 class = "mt-2">{{this.allComment.users[i].lastName}}</h2>
                 <hr />
-                <p>{{comment.content}}</p>
+                <div *ngIf = "accountIn != comment.accountId">
+                    <p>{{comment.content}}</p>
+                </div>
+                <div *ngIf = "accountIn == comment.accountId">
+                    <input (keyup) = "getEditComment($event)" class="myComment" type = "text" value = "{{comment.content}}"/>
+                    <div>
+                        <button (click)="editComment(comment._id)" type="button" class="btn btn-success">Sửa Bình Luận</button>
+                        <button (click)="deleteComment(comment._id)" type="button" class="btn btn-danger mx-2">Xóa Bình Luận</button>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-warning my-2">Trả Lời</button>
             </div>
         </div>
     </div>

@@ -54,3 +54,12 @@ img{
     border-color: purple;
 }
 
+.myComment{
+    padding: 2px;
+    margin-bottom: 10px;
+    width: 50vw;
+    background: none;
+    border:none;
+    outline: none;
+}
+

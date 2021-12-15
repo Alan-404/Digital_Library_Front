@@ -22,6 +22,7 @@ export class MyInfoComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.getAllInfo().subscribe(response => {
       this.infoPage = response;
+      console.log(response)
       if (this.infoPage.user.avatar)
         this.avatar = true;
         

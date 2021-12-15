@@ -1,9 +1,9 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetBookService } from 'src/app/Services/get-book.service';
 import { CommentService } from 'src/app/Services/comment.service';
 import { Comment } from 'src/app/Interfaces/Comment';
+import { AccountService } from 'src/app/Services/account.service';
 @Component({
   selector: 'app-show-book',
   templateUrl: './show-book.component.html',
@@ -11,7 +11,7 @@ import { Comment } from 'src/app/Interfaces/Comment';
 })
 export class ShowBookComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private getBookSservice: GetBookService, private router: Router, private commentService: CommentService) { }
+  constructor(private route: ActivatedRoute, private getBookSservice: GetBookService, private router: Router, private commentService: CommentService, private accountService: AccountService) { }
   bookId: String = '';
 
   bookInfo: any = {};
@@ -31,10 +31,17 @@ export class ShowBookComponent implements OnInit {
 
   animate = 'w3-animate-right'
 
+
+  accountIn: any
+
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       //console.log(params);
       this.bookId = params.id;
+    })
+
+    this.accountService.getInfor().subscribe(response => {
+      this.accountIn = response.accountId
     })
 
 
@@ -130,10 +137,45 @@ export class ShowBookComponent implements OnInit {
     this.commentService.insertComment(this.comment).subscribe(response => {
       this.response = response;
       if (this.response){
+        this.commentContent = ''
         this.commentService.getAllCommentIdObjId(this.comment.objId).subscribe(response => {
           this.allComment = response;
         })
       }
     })
   }
+
+  contentEdited: string = ''
+  getEditComment(event: any){
+    this.contentEdited = event.target.value;
+  }
+
+
+  async editComment(id: string){
+    await this.commentService.editComment(id, this.contentEdited).subscribe(async (response) => {
+      console.log(response)
+      if (response.success){
+        await this.commentService.getAllCommentIdObjId(this.comment.objId).subscribe(response => {
+          this.allComment = response;
+          
+        })
+      }
+        
+    })
+  }
+
+  async deleteComment(id: string){
+    await this.commentService.deleteComment(id).subscribe(async (response) => {
+      if (response.success){
+        await this.commentService.getAllCommentIdObjId(this.comment.objId).subscribe(response => {
+          this.allComment = response;
+          
+        })
+      }
+        
+    })
+  }
+
+
+
 }
