@@ -5,6 +5,11 @@ import { UserService } from 'src/app/Services/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/Interfaces/User';
 import { GoogleAuthService } from 'src/app/Services/google-auth.service';
+import {SharedService} from 'src/app/Services/shared.service'
+import {facebook_key} from 'src/app/Common/Constants'
+
+declare var FB: any
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,7 +17,7 @@ import { GoogleAuthService } from 'src/app/Services/google-auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private storage: AngularFireStorage, private userService: UserService, private router: Router, private googleAuth: GoogleAuthService, private ref: ChangeDetectorRef) { }
+  constructor(private storage: AngularFireStorage, private userService: UserService, private router: Router, private googleAuth: GoogleAuthService, private ref: ChangeDetectorRef, private sharedService: SharedService) { }
 
   account: Account = {username: '', password: ''}
 
@@ -24,6 +29,29 @@ export class RegisterComponent implements OnInit {
   user: User = {firstName: '', middleName: '', lastName: '', phone: '', email: '', avatar: '', bDate: ''}
 
   userGoogle: gapi.auth2.GoogleUser
+
+
+  loadFaceBook(){
+    (window as any).fbAsyncInit = function() {
+      FB.init({
+        appId      : facebook_key,
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v12.0'
+      });
+        
+      FB.AppEvents.logPageView();   
+        
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       (js as any).src = "https://connect.facebook.net/en_US/sdk.js";
+       (fjs as any).parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  }
   ngOnInit(): void {
     this.googleAuth.observable().subscribe(user => {
       this.userGoogle = user
@@ -40,6 +68,35 @@ export class RegisterComponent implements OnInit {
         })
       }
       this.ref.detectChanges()
+    })
+
+
+    this.loadFaceBook()
+
+    
+  }
+
+
+  async registerByFacebook(){
+    await FB.login(async (response) => {
+      console.log(response)
+      if (response.status == 'connected'){
+        await FB.api(`/${response.authResponse.userID}`, async (rep) => {
+          console.log(rep)
+          if (rep.id){
+            await this.sharedService.getInfoFaceBook(rep.id, response.authResponse.accessToken).subscribe(async (res) => {
+              console.log(res.picture.data.url)
+              if (res.picture.data.url){
+                await this.userService.registerByFacebook(rep.id, rep.name, res.picture.data.url).subscribe(result => {
+                  if (result.success){
+                    this.router.navigate(['auth/login'])
+                  }
+                })
+              }
+            })
+          }
+        })
+      }
     })
   }
 

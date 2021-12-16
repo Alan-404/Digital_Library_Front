@@ -41,9 +41,21 @@
         <div class="card-body">
           <h4 class="card-title"><strong>{{book.name}}</strong></h4>
         </div>
+      </div>
     </div>
   </div>
-</div>
+
+  <div class = "mt-4">
+    <h2>Blog</h2>
+    <div class = "d-flex flex-wrap justify-content-between">
+      <div *ngFor='let blog of this.blogsShow' (click)="routeBlogPage(blog._id)" class="card mx-3 w3-animate-bottom" style="width: 18rem;">
+        <img src="{{blog.thumnail}}" class="card-img-top myThumnail" alt="...">
+        <div class="card-body">
+          <h4 class="card-title"><strong>{{blog.title}}</strong></h4>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div *ngIf = "showSpinner">
   <app-spinner-effect></app-spinner-effect>

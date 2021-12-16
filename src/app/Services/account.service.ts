@@ -51,4 +51,8 @@ export class AccountService {
   resetPassword(email: string, newPassword: string):Observable<any>{
     return this.request.put<any>(`http://localhost:5000/account/reset-password`, {email, newPassword})
   }
+
+  loginByFacebook(id: string):Observable<any>{
+    return this.request.post<any>(`http://localhost:5000/account/login-facebook`, {id})
+  }
 }

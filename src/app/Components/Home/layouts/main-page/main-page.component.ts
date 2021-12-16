@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AdService } from 'src/app/Services/ad.service';
 import {Ad} from '../../../../Interfaces/Ad';
-import { Books } from 'src/app/Interfaces/Books';
 import { GetBookService } from 'src/app/Services/get-book.service';
 import { NewsService } from 'src/app/Services/news.service';
 import { Router } from '@angular/router';
+import { BlogService } from 'src/app/Services/blog.service';
 
 @Component({
   selector: 'app-main-page',
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor(private AdService: AdService, private getBookService: GetBookService, private newsService: NewsService, private router: Router) { }
+  constructor(private AdService: AdService, private getBookService: GetBookService, private newsService: NewsService, private router: Router, private blogService: BlogService) { }
  
   ads: Ad[] = [];
 
@@ -29,6 +29,10 @@ export class MainPageComponent implements OnInit {
 
   booksShow: any = [];
 
+  infoBlogs : any = []
+
+  blogsShow: any = []
+
   ngOnInit(): void {
     this.AdService.getAllAds().subscribe(response => {
       this.ads = response.ads;
@@ -36,7 +40,6 @@ export class MainPageComponent implements OnInit {
 
     this.newsService.getAllNews().subscribe(response => {
       this.infoNews = response;
-      console.log(this.infoNews.news)
       for (var i =this.infoNews.news.length - 1; i>= this.infoNews.news.length-4; --i)
         this.showNews.push(this.infoNews.news[i])
     })
@@ -45,6 +48,15 @@ export class MainPageComponent implements OnInit {
       this.infoBooks = response;
       for (var i = this.infoBooks.books.length - 1; i >= this.infoBooks.books.length - 4; --i)
         this.booksShow.push(this.infoBooks.books[i]);
+    })
+
+    this.blogService.getAllBlogs().subscribe(response => {
+      for (var i = 0; i<response.blogs.length; ++i){
+        this.blogsShow.push(response.blogs[i])
+        if (i == 3)
+          break;
+      }
+      this.blogsShow.reverse();  
     })
 
     setTimeout(() => {
@@ -59,6 +71,10 @@ export class MainPageComponent implements OnInit {
 
   routeBookPage(id: String){
     this.router.navigate(['home/book'], {queryParams: {id}})
+  }
+
+  routeBlogPage(id: string){
+    this.router.navigate(['home/blog'], {queryParams: {id}})
   }
 
 

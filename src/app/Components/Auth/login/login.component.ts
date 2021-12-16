@@ -4,7 +4,9 @@ import { Account } from 'src/app/Interfaces/Account';
 import {Router} from '@angular/router'
 import { GoogleAuthService } from 'src/app/Services/google-auth.service';
 import { UserService } from 'src/app/Services/user.service';
+import {facebook_key} from 'src/app/Common/Constants'
 
+declare var FB: any
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,6 +18,28 @@ export class LoginComponent implements OnInit {
   account: Account = {username: '', password: ''}
 
   message: String = '';
+
+  loadFaceBook(){
+    (window as any).fbAsyncInit = function() {
+      FB.init({
+        appId      : facebook_key,
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v12.0'
+      });
+        
+      FB.AppEvents.logPageView();   
+        
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       (js as any).src = "https://connect.facebook.net/en_US/sdk.js";
+       (fjs as any).parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  }
 
 
   onKey(event: any){
@@ -46,6 +70,8 @@ export class LoginComponent implements OnInit {
       }
       this.ref.detectChanges()
     })
+
+    this.loadFaceBook();
   }
 
   login(){
@@ -66,6 +92,21 @@ export class LoginComponent implements OnInit {
 
   signInGoogle(){
     this.googleAuth.signIn()
+  }
+
+
+  async loginAccountFacebook(){
+    await FB.login(async (response) => {
+      console.log(response)
+      await this.loginService.loginByFacebook(response.authResponse.userID).subscribe(rep => {
+        if (rep.success){
+          localStorage.setItem('key', rep.accessToken);
+          this.router.navigate(['home']).then(() => {
+            window.location.reload();
+          });
+        }
+      })
+    })
   }
 
 

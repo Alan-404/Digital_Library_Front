@@ -17,8 +17,8 @@ export class BlogService {
   constructor(private request: HttpClient) { }
 
 
-  getAllBlogs():Observable<{}>{
-    return this.request.get<{}>(`http://localhost:5000/blog`)
+  getAllBlogs():Observable<any>{
+    return this.request.get<any>(`http://localhost:5000/blog`)
   }
 
   getBlogById(id: string):Observable<{}>{

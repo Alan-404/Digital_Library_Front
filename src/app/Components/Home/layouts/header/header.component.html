@@ -15,9 +15,9 @@
           <h2>{{name}}</h2>
         </button>
           <mat-menu #menu="matMenu">
-            <button (click)="goToMyInfo()" mat-menu-item>Thông tin cá nhân</button>
-            <button (click)="logout()" mat-menu-item>Đăng xuất</button>
-            <button (click)="loginAccount()" mat-menu-item>Đăng nhập</button>
+            <button *ngIf = "auth" (click)="goToMyInfo()" mat-menu-item>Thông tin cá nhân</button>
+            <button *ngIf = "auth" (click)="logout()" mat-menu-item>Đăng xuất</button>
+            <button *ngIf = "!auth" (click)="loginAccount()" mat-menu-item>Đăng nhập</button>
           </mat-menu>
       </div>
     </div>
@@ -25,7 +25,7 @@
   <div class="list-group d-flex flex-row text-center">
     <a routerLink = "/home/mainPage" class="list-group-item list-group-item-action">Trang Chủ</a>
     <a routerLink='/home/allCategories' class="list-group-item list-group-item-action">Danh Mục Sách</a>
-    <a routerLink="/home/allNews" class="list-group-item list-group-item-action">Tin Tức Thế Giới Sách</a>
+    <a routerLink="/home/allNews" class="list-group-item list-group-item-action">Tin Tức</a>
     <a routerLink="/home/authors" class="list-group-item list-group-item-action">Tác Giả</a>
     <a routerLink="/home/blogs" class="list-group-item list-group-item-action">Blog</a>
     <a *ngIf = "role" routerLink="/home/admin/homeAdmin" class="list-group-item list-group-item-action">Quản Lý Trang</a>

@@ -56,3 +56,7 @@ button{
 .myFacebook:hover{
     background-color: rgb(51, 51, 207);;
 }
+
+.forgotLink{
+    margin-right: 30px;
+}

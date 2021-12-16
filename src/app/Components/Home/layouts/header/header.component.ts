@@ -12,17 +12,22 @@ export class HeaderComponent implements OnInit {
   constructor(private getNameService: GetNameService, private router: Router) { }
   name: String = '';
   role: boolean = false;
+  auth: boolean = false;
   ngOnInit(): void {
     this.getNameService.getName().subscribe(response => {
       console.log(response)
       this.name = response.name;
       this.role = response.role;
     })
+    if(localStorage.getItem('key'))
+      this.auth = true;
   }
 
   logout(){
     localStorage.removeItem('key');
+    this.auth = false
     this.name = '';
+    this.router.navigate(['auth/login']);
   }
 
   loginAccount(){

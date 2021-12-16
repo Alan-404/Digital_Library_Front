@@ -25,7 +25,6 @@ export class ListAuthorsComponent implements OnInit {
   }
 
   async deleteAuthor(id: string, url: string){
-    console.log(url);
     await this.storage.refFromURL(url).delete().subscribe(async () => {
       await this.authorService.deleteAuthor(id).subscribe(response =>{
         this.listen = response;

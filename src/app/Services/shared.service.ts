@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
 
-  email: string = ''
-  constructor() { }
+  constructor(private request: HttpClient) { }
 
-  setEmail(email: string){
-    this.email = email;
+  getInfoFaceBook(id: string, accessToken: string):Observable<any>{
+    return this.request.get(`https://graph.facebook.com/${id}?fields=picture&access_token=${accessToken}`)
   }
 
-  getEmail(){
-    return this.email
-  }
+  
 }
