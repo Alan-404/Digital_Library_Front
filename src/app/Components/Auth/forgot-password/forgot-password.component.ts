@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { EmailService } from 'src/app/Services/email.service';
 import { Mail } from 'src/app/Interfaces/Mail';
-
+import { SharedService } from 'src/app/Services/shared.service';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -9,7 +9,7 @@ import { Mail } from 'src/app/Interfaces/Mail';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  constructor(private emailService: EmailService) { }
+  constructor(private emailService: EmailService, private sharedService: SharedService) { }
   ngOnInit(): void {
   }
   message: String = '';
@@ -19,10 +19,12 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   authenticateEmail(){
-    console.log(this.mail.email);
     this.emailService.sendEmail(this.mail).subscribe(response => {
-      if (response.success)
+      if (response.success){
         this.message = response.message;
+        localStorage.setItem('email', this.mail.email)
+      }
+        
         setTimeout(() => {this.message = ''}, 3000)
     })
   }

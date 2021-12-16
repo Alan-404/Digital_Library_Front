@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 const headerOption = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    Authorization: `Bearer ${localStorage.getItem('key')}`
+    'Authorization': `Bearer ${localStorage.getItem('key')}`
   })
 }
 
@@ -17,6 +17,8 @@ const headerOption = {
 export class AccountService {
 
   constructor(private request: HttpClient) { }
+
+  public static emailReset: string = ''
 
   loginAccount(account: Account):Observable<Response>{
     return this.request.post<Response>('http://localhost:5000/account/login', account);
@@ -44,5 +46,9 @@ export class AccountService {
 
   getInfor():Observable<any>{
     return this.request.get<any>('http://localhost:5000/account/getInfor', headerOption);
+  }
+
+  resetPassword(email: string, newPassword: string):Observable<any>{
+    return this.request.put<any>(`http://localhost:5000/account/reset-password`, {email, newPassword})
   }
 }

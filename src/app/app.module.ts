@@ -53,6 +53,7 @@ import { SearchComponent } from './Components/Home/search/search.component';
 import { firebaseConfig } from './Common/Constants';
 import { EditProfileComponent } from './Components/Home/user/edit-profile/edit-profile.component';
 import { LayoutProfileComponent } from './Components/Home/layouts/layout-profile/layout-profile.component';
+import { ResetPasswordComponent } from './Components/Auth/reset-password/reset-password.component';
 
 
 const appRoutes: Routes = [
@@ -68,7 +69,8 @@ const appRoutes: Routes = [
       [
         {path: 'login', component: LoginComponent},
         {path: 'register', component: RegisterComponent},
-        {path:'forgotPass', component:ForgotPasswordComponent}
+        {path:'forgotPass', component:ForgotPasswordComponent},
+        {path:'reset-password', component:ResetPasswordComponent}
       ]
   },
   {
@@ -142,7 +144,8 @@ const appRoutes: Routes = [
     AddCategoryComponent,
     SearchComponent,
     EditProfileComponent,
-    LayoutProfileComponent
+    LayoutProfileComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
