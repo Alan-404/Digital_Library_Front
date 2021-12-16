@@ -62,5 +62,16 @@
         <p class ="">Bạn đã có tài khoản? </p><a class="changeLink" routerLink = "/auth/login">Đăng nhập ở đây</a> 
     </div>
     <button (click)="registerUser()" mat-raised-button color="accent">Đăng ký tài khoản</button>
+    <div class="mt-5 d-flex">
+        <button (click)="registerByGoogle()" class="d-flex socialBtn myGoogle">
+            <img class="social" src="https://quangsilic.com/wp-content/uploads/2020/09/GOOGLE.jpg"/>
+            <p class="mx-3 contentSocial">Đăng Ký Google</p>
+        </button>
+
+        <button class="d-flex socialBtn myFacebook">
+            <img class="social" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Facebook_logo_36x36.svg/2048px-Facebook_logo_36x36.svg.png"/>
+            <p class="mx-3 contentSocial">Đăng Ký Facebook</p>
+        </button>
+    </div>
 </div>
 

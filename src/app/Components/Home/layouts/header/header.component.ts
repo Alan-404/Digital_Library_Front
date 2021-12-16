@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   role: boolean = false;
   ngOnInit(): void {
     this.getNameService.getName().subscribe(response => {
+      console.log(response)
       this.name = response.name;
       this.role = response.role;
     })

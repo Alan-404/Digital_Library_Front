@@ -22,3 +22,37 @@ button{
 .registerLink{
     margin-left: 3px;
 }
+
+
+.social{
+    width: 40px;
+    height: 40px;
+}
+
+.socialBtn{
+    width: 15vw;
+    padding: 0;
+    border:none;
+    outline: none;
+}
+
+.contentSocial{
+    margin-top: 9px;
+}
+
+.socialBtn:hover{
+    background-color: rgb(233, 230, 227);
+}
+
+.myGoogle{
+    background-color: white;
+}
+
+.myFacebook{
+    background-color: rgb(75, 75, 238);
+    color: white;
+}
+
+.myFacebook:hover{
+    background-color: rgb(51, 51, 207);;
+}

@@ -20,5 +20,16 @@
             
         </div>
         <button (click) = "login()" mat-raised-button color="accent">Đăng nhập</button>
+        <div class="mt-3 d-flex justify-content-between">
+            <button (click)="signInGoogle()" class="d-flex socialBtn myGoogle">
+                <img class="social" src="https://quangsilic.com/wp-content/uploads/2020/09/GOOGLE.jpg"/>
+                <p class="mx-3 contentSocial">Đăng Nhập Google</p>
+            </button>
+
+            <button class="d-flex socialBtn myFacebook">
+                <img class="social" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Facebook_logo_36x36.svg/2048px-Facebook_logo_36x36.svg.png"/>
+                <p class="mx-3 contentSocial">Đăng Nhập Facebook</p>
+            </button>
+        </div>
     </div>
 </div>

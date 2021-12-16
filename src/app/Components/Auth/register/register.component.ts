@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Account } from 'src/app/Interfaces/Account';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { UserService } from 'src/app/Services/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/Interfaces/User';
+import { GoogleAuthService } from 'src/app/Services/google-auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +12,7 @@ import { User } from 'src/app/Interfaces/User';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private storage: AngularFireStorage, private userService: UserService, private router: Router) { }
+  constructor(private storage: AngularFireStorage, private userService: UserService, private router: Router, private googleAuth: GoogleAuthService, private ref: ChangeDetectorRef) { }
 
   account: Account = {username: '', password: ''}
 
@@ -22,7 +23,29 @@ export class RegisterComponent implements OnInit {
 
   user: User = {firstName: '', middleName: '', lastName: '', phone: '', email: '', avatar: '', bDate: ''}
 
+  userGoogle: gapi.auth2.GoogleUser
   ngOnInit(): void {
+    this.googleAuth.observable().subscribe(user => {
+      this.userGoogle = user
+      if (this.userGoogle){
+        var profile = this.userGoogle.getBasicProfile();
+        var id = profile.getId();
+        var email = profile.getEmail()
+        var fullName = profile.getName();
+        var imageUrl = profile.getImageUrl();
+        this.userService.registerAccountGoogle(id, fullName, email, imageUrl).subscribe(response => {
+          if (response.success){
+            this.router.navigate(['auth/login'])
+          }
+        })
+      }
+      this.ref.detectChanges()
+    })
+  }
+
+
+  registerByGoogle(){
+    this.googleAuth.signIn();
   }
 
 
