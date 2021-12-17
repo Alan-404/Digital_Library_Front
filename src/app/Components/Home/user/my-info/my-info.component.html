@@ -2,7 +2,7 @@
     <div *ngIf = "!this.edit" class = "d-flex w3-animate-left">
         <div class = "firstPage text-center">
             <i *ngIf="!this.avatar" class="fa fa-user" aria-hidden="true"></i>
-            <img *ngIf="this.avatar" src = "{{this.infoPage.user.avatar}}"/>
+            <img *ngIf="this.avatar" src = "{{imageShow}}"/>
             <div class = "mt-4">
                 <h1>Độc Giả</h1>
                 <h1>{{this.infoPage.user.firstName + ' ' + this.infoPage.user.middleName + ' ' + this.infoPage.user.lastName}}</h1>
@@ -21,60 +21,79 @@
 
         <div class = "sePage w3-animate-right">
             <h1 class="w3-animate-top">Blogs của bạn<a routerLink = "/home/addBlog" type="button" class="btn btn-info mx-4"><i class="fas fa-plus"></i></a></h1>
+            <mat-progress-bar *ngIf = "showProcess" mode="indeterminate"></mat-progress-bar>
             <div class="list-group w3-animate-bottom">
-                <div *ngFor = "let blog of infoBlogs.blogs" class="">
+                <div *ngFor = "let blog of blogShow" class="mb-4">
                     <a routerLink="/home/blog" [queryParams]="{id: blog._id}" class="list-group-item list-group-item-action d-flex myBlog">
-                        <img [src]="blog.thumnail"/>
+                        <img class="myThumnail" [src]="blog.thumnail"/>
                         <div class="mt-4 mx-3">
                             <h3>{{blog.title}}</h3>
                         </div>
                     </a>
                     <div class="mx-5">
-                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                        <button (click)="deleteMyBlog(blog._id, blog.thumnail)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </div>
-                    
                 </div>
             </div>
+            <div class = "myPage">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li *ngFor="let page of showPage" (click)="getBlogByPage($event)" class="page-item"><a class="page-link">{{page}}</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                </nav>
+            </div>
+            
         </div>
 
     </div>
     
     <div class="d-flex" *ngIf = "this.edit">
 
-        <div class="firstPage">
+        <div class="firstPage editPage">
             <div class = "text-center mb-3">
                 <i *ngIf="!this.avatar" class="fa fa-user" aria-hidden="true"></i>
-                <img *ngIf="this.avatar" src = "{{this.infoPage.user.avatar}}"/>
+                <img class="editImage" *ngIf="this.avatar" src = "{{imageShow}}"/>
+                <i (click) = "goChangeAvatar()" class="fas fa-download mx-3 mt-5 btnAvatar"></i>
             </div>
-    
+            <span class="text-center text-success h3 mb-2 infoMessage">{{messageInfo}}</span>
+            
             <div class="input-group mb-3 myInput">
                 <span class="input-group-text">Tên độc giả</span>
-                <input  name = "firstName" type="text" aria-label="First name" class="form-control" value = {{this.infoPage.user.firstName}}>
-                <input  name = "middleName" type="text" aria-label="Last name" class="form-control" value = {{this.infoPage.user.middleName}}>
-                <input  name = "lastName" type="text" aria-label="Last name" class="form-control" value = {{this.infoPage.user.lastName}}>
+                <input (keyup)="getAuthInfo($event)"  name = "firstName" type="text" aria-label="First name" class="form-control" value = {{this.infoPage.user.firstName}}>
+                <input (keyup)="getAuthInfo($event)"  name = "middleName" type="text" aria-label="Last name" class="form-control" value = {{this.infoPage.user.middleName}}>
+                <input (keyup)="getAuthInfo($event)"  name = "lastName" type="text" aria-label="Last name" class="form-control" value = {{this.infoPage.user.lastName}}>
             </div>
 
             <div class="input-group mb-3 myInput">
                 <span class="input-group-text" id="basic-addon1">Số điện thoại</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value = "{{this.infoPage.user.phone}}">
+                <input (keyup)="getAuthInfo($event)" name="phone" type="text" class="form-control"  aria-describedby="basic-addon1" value = "{{this.infoPage.user.phone}}">
             </div>
 
             <div class="input-group mb-3 myInput">
                 <span class="input-group-text" id="basic-addon1">Email</span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value = "{{this.infoPage.user.email}}">
+                <input readonly (keyup)="getAuthInfo($event)" name = "email" type="text" class="form-control" aria-describedby="basic-addon1" value = "{{this.infoPage.user.email}}">
             </div>
 
             <div class="input-group mb-3 myInput">
                 <span class="input-group-text" id="basic-addon1">Ngày sinh</span>
-                <input type="date" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value = "{{this.infoPage.user.bDate}}">
+                <input (change)="getBdate($event)" type="date" class="form-control" aria-describedby="basic-addon1" value = "{{this.infoPage.user.bDate}}">
             </div>
 
             <div class="form-floating myInput">
-                <textarea class="form-control" style="height: 200px">{{this.infoPage.user.maxim}}</textarea>
+                <textarea (keyup)="getAuthInfo($event)" name = "maxim" class="form-control" style="height: 200px">{{this.infoPage.user.maxim}}</textarea>
                 <label for="floatingTextarea2">Châm ngôn</label>
             </div>
-            <button type="button" class="btn btn-primary btnEdit my-4">Thay đổi thông tin</button>
+            <button (click) = "editInfoUser()" type="button" class="btn btn-primary btnEdit my-4">Thay đổi thông tin</button>
         </div>
 
         <div class="sePage pageAccount">

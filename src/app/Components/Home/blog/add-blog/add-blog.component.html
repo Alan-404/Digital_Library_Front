@@ -15,8 +15,9 @@
         <img class = "showImage" [src]="this.urlImage"/>       
     </div>
     <ckeditor #content class = "myContent" [editor]="Editor"></ckeditor>
-    <button (click)="addBlog()" class = "mt-4">Thêm Blog</button>
+    <button (click)="addBlog()" type="button" class="btn btn-info mt-4">Thêm Bài Blog</button>
 </div>
+<app-spinner-effect *ngIf = "showSpinner"></app-spinner-effect>
 
 
 

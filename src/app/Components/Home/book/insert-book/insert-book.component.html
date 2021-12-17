@@ -9,14 +9,30 @@
             <input (keyup)="getInfo($event)" name="name" type="text" class="form-control" id="floatingInput" placeholder="Tên Tác Giả">
             <label for="floatingInput">Tên Sách</label>
         </div>
-        <div  class="form-floating mb-3">
+        <!-- <div  class="form-floating mb-3">
             <input (keyup)="getInfo($event)" name="author" type="text" class="form-control" id="floatingInput" placeholder="Tên Tác Giả">
             <label for="floatingInput">Tên Tác Giả</label>
+        </div> -->
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Tên Tác Giả</label>
+            <select (change)="getInforOption($event)" name = "author" class="form-select" id="inputGroupSelect01">
+              <option selected>Chọn Tên Tác Giả</option>
+              <option *ngFor="let author of allAuthors" value="{{author._id}}">{{author.name}}</option>
+            </select>
         </div>
-        <div  class="form-floating mb-3">
+        <!-- <div  class="form-floating mb-3">
             <input (keyup)="getInfo($event)" name="category" type="text" class="form-control" id="floatingInput" placeholder="Tên Tác Giả">
             <label for="floatingInput">Tên Danh Mục</label>
+        </div> -->
+
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Danh Mục</label>
+            <select (change)="getInforOption($event)" name = "category" class="form-select" id="inputGroupSelect01">
+              <option selected>Chọn Danh Mục</option>
+              <option *ngFor="let category of allCategories" value="{{category._id}}">{{category.name}}</option>
+            </select>
         </div>
+
         <div class="form-floating">
             <textarea #showAll (keyup)="getInfo($event)" name = "description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
             <label for="floatingTextarea2">Mô Tả</label>
@@ -33,4 +49,6 @@
         <button (click)="insertBook()" class = "mt-4 btn bg-info">Thêm Tác Giả</button>
     </div>
 </div>
+
+<app-spinner-effect *ngIf = "showSpinner"></app-spinner-effect>
 

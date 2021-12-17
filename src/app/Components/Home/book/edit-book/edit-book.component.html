@@ -1,0 +1,60 @@
+<div class = "myBack">
+    <div *ngIf = "!editInfor" class = "mine">
+        <div class="input-group mb-3 pt-3">
+            <input (change)="upImage($event)" type="file" accept="*.jpg.png" class="form-control" id="inputGroupFile02">
+            <button (click)="changeImage()" type="button" class="btn btn-warning">Đổi ảnh bìa</button>
+        </div>
+        <img class = "myBook" src="{{imageShow}}"/>
+    </div>
+
+    <div *ngIf = "editInfor" class = "pageInfo p-3">
+        <h1>Thông Tin Sách</h1>
+        <hr />
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Tên Sách</span>
+            </div>
+            <input name = "name" (keyup)="getInfor($event)" type="text" class="form-control" value = "{{infoPage.book.name}}">
+        </div>
+
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Tác Giả</label>
+            <select (change)="getInforOption($event)" name = "author" class="form-select" id="inputGroupSelect01">
+              <option selected>{{infoPage.authorName}}</option>
+              <option *ngFor = "let author of this.allAuthor.authors" value="{{author._id}}">{{author.name}}</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Danh Mục</label>
+            <select (change)="getInforOption($event)" name = "category" class="form-select" id="inputGroupSelect01">
+              <option selected>{{infoPage.categoryName}}</option>
+              <option *ngFor = "let category of this.allCategory.categories" value="{{category._id}}">{{category.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-floating">
+            <textarea (keyup)="getInfor($event)" name = "des" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 200px">{{infoPage.book.description}}</textarea>
+            <label for="floatingTextarea">Mô Tả</label>
+        </div>
+
+        <div class="input-group mb-3 pt-3">
+            <input (change) = "upPdf($event)" type="file" accept="*.pdf" class="form-control" id="inputGroupFile02">
+        </div>
+
+        <button (click)="editInformation()" type="button" class="btn btn-success mt-4">Đổi Thông Tin</button>
+    </div>
+
+
+    <button (click) = "changePage()" class="carousel-control-prev btnChange btnPrev" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </button>
+    <button (click) = "changePage()" class="carousel-control-next btnChange btnNext" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </button>
+    
+</div>
+
+<app-spinner-effect *ngIf = "showSpinner"></app-spinner-effect>

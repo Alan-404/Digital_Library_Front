@@ -17,7 +17,7 @@
                     <img class = "myAuthor" src="{{author.imageLink}}"/>
                 </td>
                 <td class="d-flex flex-column">
-                    <button type="button" class="btn btn-success my-2 w-50">Xem Thêm</button>
+                    <button (click)="goToEdit(author._id)" type="button" class="btn btn-success my-2 w-50">Xem Thêm</button>
                     <button (click) = "deleteAuthor(author._id, author.imageLink)" type="button" class="btn btn-danger my-2 w-50">Xóa Tác Giả</button>
                 </td>
             </tr>
@@ -26,3 +26,5 @@
 
 
 </div>
+
+<app-spinner-effect *ngIf = "showSpinner"></app-spinner-effect>

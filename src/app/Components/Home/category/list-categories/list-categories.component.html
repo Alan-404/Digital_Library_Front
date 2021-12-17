@@ -1,0 +1,12 @@
+<div class = "d-flex justify-content-between flex-wrap">
+    <div *ngFor = "let category of allCategories" class="card">
+        <img src="{{category.imageLink}}" class="card-img-top myImage" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">{{category.name}}</h2>
+          <button (click)="goCategoryPage(category._id)" type="button" class="btn btn-primary">Xem Thêm</button>
+          <button (click)="deleteCategory(category._id, category.imageLink)" type="button" class="btn btn-danger mt-3">Xóa Danh Mục</button>
+        </div>
+    </div>
+</div>
+
+<app-spinner-effect *ngIf = "showSpinner"></app-spinner-effect>

@@ -10,12 +10,12 @@ export class AuthorService {
 
   constructor(private http: HttpClient) { }
 
-  getAllAuthors():Observable<{}>{
-    return this.http.get<{}>('http://localhost:5000/author');
+  getAllAuthors():Observable<any>{
+    return this.http.get<any>('http://localhost:5000/author');
   }
 
-  getAuthorById(id: String):Observable<{}>{
-    return this.http.get<{}>(`http://localhost:5000/author/getAuthor/${id}`);
+  getAuthorById(id: String):Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/author/getAuthor/${id}`);
   }
 
   insertAuthor(author: Author):Observable<{}>{
@@ -24,6 +24,10 @@ export class AuthorService {
 
   deleteAuthor(id: string):Observable<{}>{
     return this.http.delete<{}>(`http://localhost:5000/author/delete/${id}`)
+  }
+
+  edit(author: any):Observable<any>{
+    return this.http.put<any>(`http://localhost:5000/author/edit-infor`, author)
   }
   
 }

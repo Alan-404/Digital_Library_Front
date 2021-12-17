@@ -1,0 +1,23 @@
+<div class = "myBack">
+    <mat-progress-bar *ngIf = "showProcess" mode="indeterminate"></mat-progress-bar>
+    <div class = "infor p-3 d-flex">
+        <div class = "image">
+            <img src="{{imageShow}}" class="img-thumbnail authorImage" alt="...">
+            <div class="input-group mb-3 pt-3">
+                <input (change)="uploadImage($event)" type="file" accept="*.jpg.png" class="form-control" id="inputGroupFile02">
+            </div>
+        </div>
+        <div class = "mx-3">
+            <div class = "d-flex">
+                <p class = "mt-3">Tác Giả:</p>
+                <input (keyup)="getInfor($event)" name = "name" class = "authorInfor mx-2" type = "text" value = "{{inforPage.name}}"/>
+            </div>
+
+            <div>
+                <p class = "mt-3">Mô Tả:</p>
+                <textarea (keyup)="getInfor($event)" name = "des" class = "mt-2">{{inforPage.description}}</textarea>
+            </div>
+            <button (click)="editAuthor()" type="button" class="btn btn-dark mt-4">Sửa Thông Tin</button>
+        </div>
+    </div>
+</div>

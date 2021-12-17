@@ -13,6 +13,8 @@ export class AddBlogComponent implements OnInit {
   @ViewChild("content") public content: any;
   constructor(private storage: AngularFireStorage, private blogService: BlogService) { }
 
+  showSpinner = false
+
   public Editor = ClassicEditor;
 
   blog: Blog= {title: '', introduction: '', content: '',thumnail: '', comment: [], userId: ''}
@@ -48,6 +50,7 @@ export class AddBlogComponent implements OnInit {
   }
 
   async addBlog(){
+    this.showSpinner = true
     const filePath = '/blogs/'+ this.fileName + Math.random();
     await this.storage.upload(filePath, this.file);
 
@@ -55,7 +58,7 @@ export class AddBlogComponent implements OnInit {
       this.blog.thumnail = info;
       this.blog.content = this.content.editorInstance.getData();
       await this.blogService.addBlog(this.blog).subscribe(response => {
-        console.log(response);
+        this.showSpinner = false;
       })
     })
   }

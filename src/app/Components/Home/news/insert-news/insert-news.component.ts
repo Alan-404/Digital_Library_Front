@@ -135,7 +135,7 @@ export class InsertNewsComponent implements OnInit {
   }
 
 
-  async show(){
+  async addNews(){
     //console.log(this.news);
     const filePath = '/newsThumnail/'+ this.fileName + Math.random();
     await this.storage.upload(filePath, this.file);

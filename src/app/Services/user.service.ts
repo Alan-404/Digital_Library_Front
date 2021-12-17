@@ -43,4 +43,15 @@ export class UserService {
   registerByFacebook(id: string, name: string, avatar: string):Observable<any>{
     return this.request.post<any>(`http://localhost:5000/user/register-facebook`, {id, name, avatar})
   }
+
+
+
+  editInfoUser(user:User):Observable<any>{
+    return this.request.put<any>(`http://localhost:5000/user/edit`, user)
+  }
+
+
+  changeAvatar(id: string, avatar: string):Observable<any>{
+    return this.request.put<any>(`http://localhost:5000/user/change-avatar`, {id, avatar})
+  }
 }

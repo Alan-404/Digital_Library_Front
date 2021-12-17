@@ -45,7 +45,6 @@
             <td>{{mem.bDate}}</td>
             <td><img class="userAvatar" [src]="mem.avatar"/></td>
             <td class="d-flex flex-column">
-                <button type="button" class="btn btn-success my-2">Sửa thông tin</button>
                 <button (click)="deleteUser(mem._id, mem.avatar)" type="button" class="btn btn-danger my-2">Xóa người dùng</button>
                 <button (click)="changeRole(mem._id)" type="button" class="btn btn-primary my-2">Ủy quyền admin</button>
             </td>

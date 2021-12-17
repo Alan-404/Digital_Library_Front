@@ -54,6 +54,13 @@ import { firebaseConfig } from './Common/Constants';
 import { EditProfileComponent } from './Components/Home/user/edit-profile/edit-profile.component';
 import { LayoutProfileComponent } from './Components/Home/layouts/layout-profile/layout-profile.component';
 import { ResetPasswordComponent } from './Components/Auth/reset-password/reset-password.component';
+import { ChangeAvatarComponent } from './Components/Home/user/change-avatar/change-avatar.component';
+import { ListCategoriesComponent } from './Components/Home/category/list-categories/list-categories.component';
+import { EditCategoryComponent } from './Components/Home/category/edit-category/edit-category.component';
+import { ListBooksComponent } from './Components/Home/book/list-books/list-books.component';
+import { EditBookComponent } from './Components/Home/book/edit-book/edit-book.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { EditAuthorComponent } from './Components/Home/author/edit-author/edit-author.component';
 
 
 const appRoutes: Routes = [
@@ -84,6 +91,7 @@ const appRoutes: Routes = [
       {path: 'category', component: CategoryComponent},
       {path: 'authors', component: AuthorsComponent},
       {path: 'author', component: AuthorComponent},
+      {path: 'change-avatar', component: ChangeAvatarComponent},
       {path: 'admin', component: AdminComponent, children: [
         {path: 'homeAdmin', component: HomeAdminComponent},
         {path: 'insertAuthor', component: InsertAuthorComponent},
@@ -91,7 +99,12 @@ const appRoutes: Routes = [
         {path: 'listAuthors', component: ListAuthorsComponent},
         {path: 'insertNews', component: InsertNewsComponent},
         {path: 'users', component: UsersComponent},
-        {path:'addCategory', component: AddCategoryComponent}
+        {path:'addCategory', component: AddCategoryComponent},
+        {path: 'list-categories', component: ListCategoriesComponent},
+        {path: 'edit-category', component: EditCategoryComponent},
+        {path: 'list-books', component: ListBooksComponent},
+        {path: 'edit-book', component: EditBookComponent},
+        {path: 'edit-author', component: EditAuthorComponent}
       ]},
       {path: 'news', component: NewsComponent},
       {path: 'blogs', component:BlogsComponent},
@@ -145,7 +158,13 @@ const appRoutes: Routes = [
     SearchComponent,
     EditProfileComponent,
     LayoutProfileComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ChangeAvatarComponent,
+    ListCategoriesComponent,
+    EditCategoryComponent,
+    ListBooksComponent,
+    EditBookComponent,
+    EditAuthorComponent
   ],
   imports: [
     BrowserModule,
@@ -165,7 +184,8 @@ const appRoutes: Routes = [
     RichTextEditorModule,
     FormsModule,
     CKEditorModule,
-    AngularEditorModule
+    AngularEditorModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { GetBookService } from 'src/app/Services/get-book.service';
 import { Book } from 'src/app/Interfaces/Book';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AuthorService } from 'src/app/Services/author.service';
+import { CategoryService } from 'src/app/Services/category.service';
 @Component({
   selector: 'app-insert-book',
   templateUrl: './insert-book.component.html',
@@ -10,6 +12,9 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 export class InsertBookComponent implements OnInit {
   @ViewChild('showAll') myElement: any;
   @ViewChild('show') myDiv: any;
+
+
+  showSpinner = false;
 
   fileImage: string  = '';
   fileImageName: string = '';
@@ -28,9 +33,29 @@ export class InsertBookComponent implements OnInit {
   listen: any = {success: false, message: ''};
 
 
-  constructor(private storage: AngularFireStorage, private bookService: GetBookService, private elRef: ElementRef) { }
+  constructor(private storage: AngularFireStorage, private bookService: GetBookService, private elRef: ElementRef, private authorService: AuthorService, private categoryService: CategoryService) { }
 
+  allAuthors: any
+  allCategories: any
   ngOnInit(): void {
+    this.authorService.getAllAuthors().subscribe(response => {
+      this.allAuthors = response.authors
+    })
+
+    this.categoryService.getAllCategories().subscribe(response => {
+      this.allCategories = response.categories
+    })
+
+  }
+
+
+  getInforOption(event: any){
+    const name = event.target.name;
+    const value = event.target.value;
+    if (name == "author")
+      this.book.author = value;
+    else if (name == "category")
+      this.book.category = value
   }
 
 
@@ -62,16 +87,12 @@ export class InsertBookComponent implements OnInit {
   upPdf(event: any){
     this.filePdf = event.target.files[0];
     this.filePdfName = event.target.files[0].name;
-
-    
-    
-
   }
 
   async insertBook(){
-    console.log(this.book);
-    console.log(this.fileImage);
-    console.log(this.filePdf);
+    this.showSpinner = true
+    /* console.log(this.fileImage);
+    console.log(this.filePdf); */
     const filePathImage = '/bookImages/'+this.fileImageName + Math.random();
     const filePathPdf = '/books/'+this.filePdfName + Math.random();
     await this.storage.upload(filePathImage, this.fileImage);
@@ -85,7 +106,7 @@ export class InsertBookComponent implements OnInit {
         this.book.imageLink = infoImage;
 
         await this.bookService.insertBook(this.book).subscribe(response => {
-          console.log(response);
+          this.showSpinner = false
           this.listen = response
           setTimeout(() => {
             this.listen.message = '';

@@ -34,4 +34,9 @@ export class BlogService {
     return this.request.get<any>(`http://localhost:5000/blog/token`, headerOption)
   }
 
+
+  deleteBlog(id: string):Observable<any>{
+    return this.request.delete<any>(`http://localhost:5000/blog/delete?id=${id}`)
+  }
+
 }
