@@ -13,6 +13,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class InsertNewsComponent implements OnInit {
 
+  showSpinner = false;
   toolbarHiddenButtons =  [
     [
       'undo',
@@ -137,6 +138,7 @@ export class InsertNewsComponent implements OnInit {
 
   async addNews(){
     //console.log(this.news);
+    this.showSpinner = true
     const filePath = '/newsThumnail/'+ this.fileName + Math.random();
     await this.storage.upload(filePath, this.file);
     
@@ -146,7 +148,8 @@ export class InsertNewsComponent implements OnInit {
       this.news.thumnail = info;
       this.news.content = this.content.editorInstance.getData();
       await this.newsService.insertNews(this.news).subscribe(response => {
-        console.log(response);
+        if (response.success)
+          this.showSpinner = false;
       });
     })
     //console.log(this.newContent);

@@ -61,6 +61,7 @@ import { ListBooksComponent } from './Components/Home/book/list-books/list-books
 import { EditBookComponent } from './Components/Home/book/edit-book/edit-book.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { EditAuthorComponent } from './Components/Home/author/edit-author/edit-author.component';
+import { ListNewsComponent } from './Components/Home/news/list-news/list-news.component';
 
 
 const appRoutes: Routes = [
@@ -104,7 +105,8 @@ const appRoutes: Routes = [
         {path: 'edit-category', component: EditCategoryComponent},
         {path: 'list-books', component: ListBooksComponent},
         {path: 'edit-book', component: EditBookComponent},
-        {path: 'edit-author', component: EditAuthorComponent}
+        {path: 'edit-author', component: EditAuthorComponent},
+        {path: 'list-news', component: ListNewsComponent}
       ]},
       {path: 'news', component: NewsComponent},
       {path: 'blogs', component:BlogsComponent},
@@ -164,7 +166,8 @@ const appRoutes: Routes = [
     EditCategoryComponent,
     ListBooksComponent,
     EditBookComponent,
-    EditAuthorComponent
+    EditAuthorComponent,
+    ListNewsComponent
   ],
   imports: [
     BrowserModule,

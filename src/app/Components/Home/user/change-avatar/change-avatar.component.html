@@ -6,21 +6,19 @@
             <button (click)="changeAvatar()" type="button" class="btn btn-warning">Đổi ảnh đại diện</button>
         </div>
         <div class = "info mt-3">
-            <h1 class ="text-light author mt-4">{{fullName}}</h1>
-            <div class = "myTitle">
+            <h1 class ="text-light author mt-4 w3-animate-left">{{fullName}}</h1>
+            <div class = "myTitle w3-animate-right">
                 <h1 class = "content mx-5">Bất Kỳ Ai</h1>
                 <h1 class = "content py-3">Cũng Có Thể</h1>
                 <h1 class = "content mx-5">Lấp Lánh</h1>
             </div>
-            <div class = "infoWeb d-flex">
+            <div class = "infoWeb d-flex w3-animate-right">
                 <img class ="myLogo" src = "https://img.collegedekhocdn.com/media/img/news/digital_book_comp_600_1.jpg?tr=h-310,w-615"/>
                 <div class="vl mx-2"></div>
                 <div class = "mx-2">
                     <p>Dreamy</p>
                     <p>Library</p>
                 </div>
-                
-
             </div>
         </div>
         <img class = "myAvatar" [src]="imageShow"/>  

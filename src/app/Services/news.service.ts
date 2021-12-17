@@ -9,15 +9,19 @@ export class NewsService {
 
   constructor(private request: HttpClient) { }
 
-  getAllNews():Observable<{}>{
-    return this.request.get<{}>(`http://localhost:5000/news`);
+  getAllNews():Observable<any>{
+    return this.request.get<any>(`http://localhost:5000/news`);
   }
 
   getNewsById(id: String):Observable<{}>{
     return this.request.get<{}>(`http://localhost:5000/news/getNewsById?newsId=${id}`);
   }
 
-  insertNews(news: News):Observable<{}>{
-    return this.request.post<{}>(`http://localhost:5000/news/insert`, news)
+  insertNews(news: News):Observable<any>{
+    return this.request.post<any>(`http://localhost:5000/news/insert`, news)
+  }
+
+  deleleNews(id: string):Observable<any>{
+    return this.request.delete<any>(`http://localhost:5000/news/delete?id=${id}`)
   }
 }

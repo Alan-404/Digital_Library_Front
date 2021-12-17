@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor= "let book of allBooks; let i = index">
+      <tr *ngFor= "let book of allBooks; let i = index" class = "w3-animate-left">
         <th scope="row">{{i+1}}</th>
         <td><img src="{{book.imageLink}}"/></td>
         <td>{{book.name}}</td>
@@ -24,6 +24,8 @@
             
         </td>
       </tr>
+
+      
     </tbody>
 </table>
 

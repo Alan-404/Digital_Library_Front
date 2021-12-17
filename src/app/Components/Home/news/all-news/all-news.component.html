@@ -1,5 +1,5 @@
 <div class="container mt-4">
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel slide w3-animate-top" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -23,7 +23,7 @@
         </button>
     </div>
 
-    <div>
+    <div class = "w3-animate-bottom">
       <div *ngFor = "let news of this.infoPage.news" class = "my-4 myNews p-3" (click)="goNews(news._id)">
         <h2>{{news.title}}</h2>
         <hr />

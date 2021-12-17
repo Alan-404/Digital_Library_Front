@@ -35,20 +35,10 @@
                     </div>
                 </div>
             </div>
-            <div class = "myPage">
+            <div class = "myPage w3-animate-left">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
                       <li *ngFor="let page of showPage" (click)="getBlogByPage($event)" class="page-item"><a class="page-link">{{page}}</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
                     </ul>
                 </nav>
             </div>
@@ -61,42 +51,42 @@
 
         <div class="firstPage editPage">
             <div class = "text-center mb-3">
-                <i *ngIf="!this.avatar" class="fa fa-user" aria-hidden="true"></i>
-                <img class="editImage" *ngIf="this.avatar" src = "{{imageShow}}"/>
-                <i (click) = "goChangeAvatar()" class="fas fa-download mx-3 mt-5 btnAvatar"></i>
+                <i *ngIf="!this.avatar" class="fa fa-user w3-animate-top w3-animate-bottom" aria-hidden="true"></i>
+                <img class="editImage w3-animate-top" *ngIf="this.avatar" src = "{{imageShow}}"/>
+                <i (click) = "goChangeAvatar()" class="fas fa-download mx-3 mt-5 btnAvatar w3-animate-top"></i>
             </div>
             <span class="text-center text-success h3 mb-2 infoMessage">{{messageInfo}}</span>
             
-            <div class="input-group mb-3 myInput">
+            <div class="input-group mb-3 myInput w3-animate-right">
                 <span class="input-group-text">Tên độc giả</span>
                 <input (keyup)="getAuthInfo($event)"  name = "firstName" type="text" aria-label="First name" class="form-control" value = {{this.infoPage.user.firstName}}>
                 <input (keyup)="getAuthInfo($event)"  name = "middleName" type="text" aria-label="Last name" class="form-control" value = {{this.infoPage.user.middleName}}>
                 <input (keyup)="getAuthInfo($event)"  name = "lastName" type="text" aria-label="Last name" class="form-control" value = {{this.infoPage.user.lastName}}>
             </div>
 
-            <div class="input-group mb-3 myInput">
+            <div class="input-group mb-3 myInput w3-animate-left">
                 <span class="input-group-text" id="basic-addon1">Số điện thoại</span>
                 <input (keyup)="getAuthInfo($event)" name="phone" type="text" class="form-control"  aria-describedby="basic-addon1" value = "{{this.infoPage.user.phone}}">
             </div>
 
-            <div class="input-group mb-3 myInput">
+            <div class="input-group mb-3 myInput w3-animate-bottom">
                 <span class="input-group-text" id="basic-addon1">Email</span>
                 <input readonly (keyup)="getAuthInfo($event)" name = "email" type="text" class="form-control" aria-describedby="basic-addon1" value = "{{this.infoPage.user.email}}">
             </div>
 
-            <div class="input-group mb-3 myInput">
+            <div class="input-group mb-3 myInput w3-animate-bottom">
                 <span class="input-group-text" id="basic-addon1">Ngày sinh</span>
                 <input (change)="getBdate($event)" type="date" class="form-control" aria-describedby="basic-addon1" value = "{{this.infoPage.user.bDate}}">
             </div>
 
-            <div class="form-floating myInput">
+            <div class="form-floating myInput w3-animate-bottom">
                 <textarea (keyup)="getAuthInfo($event)" name = "maxim" class="form-control" style="height: 200px">{{this.infoPage.user.maxim}}</textarea>
                 <label for="floatingTextarea2">Châm ngôn</label>
             </div>
-            <button (click) = "editInfoUser()" type="button" class="btn btn-primary btnEdit my-4">Thay đổi thông tin</button>
+            <button (click) = "editInfoUser()" type="button" class="btn btn-primary btnEdit my-4 w3-animate-bottom">Thay đổi thông tin</button>
         </div>
 
-        <div class="sePage pageAccount">
+        <div class="sePage pageAccount w3-animate-bottom">
             <h1>Tài khoản của bạn:</h1>
             <span class="h4 {{showColorMessage}} mb-3">{{message}}</span>
             <div class="input-group mb-3 authInput">

@@ -1,20 +1,20 @@
 <div class="container mt-4">
-    <h1>Thêm Danh Mục</h1>
-    <hr />
-    <div class="input-group mb-3">
+    <h1 class = "w3-animate-top">Thêm Danh Mục</h1>
+    <hr class = "w3-animate-left"/>
+    <div class="input-group mb-3 w3-animate-right">
         <span class="input-group-text" id="basic-addon3">Tên Danh Mục</span>
         <input (keyup)="getInfo($event)" name = "name" type="text" class="form-control w-50"  aria-describedby="basic-addon3">
     </div>
-    <div class="form-floating">
+    <div class="form-floating w3-animate-bottom">
         <textarea (keyup)="getInfo($event)" name = "description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
         <label for="floatingTextarea">Mô Tả</label>
     </div>
-    <div class="d-flex flex-column my-4">
+    <div class="d-flex flex-column my-4 w3-animate-left">
         <label>Hình Ảnh Mô Tả</label>
         <input (change)="upImage($event)" class = "mt-4" type="file" accept="*.png.jpg">
         <img class = "showImage" [src]="imageShow"/>       
     </div>
-    <button (click)="addCategory()" type="button" class="btn btn-info mt-4 text-light">Thêm Danh Mục</button>
+    <button (click)="addCategory()" type="button" class="btn btn-info mt-4 text-light w3-animate-bottom">Thêm Danh Mục</button>
 </div>
 
 

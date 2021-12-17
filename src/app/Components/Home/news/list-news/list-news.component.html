@@ -1,0 +1,16 @@
+<div class = "w3-animate-bottom">
+    <div *ngFor = "let news of this.newsShow" class = "my-4 myNews p-3">
+      <h2>{{news.title}}</h2>
+      <hr />
+      <div class = "d-flex">
+        <img [src] = "news.thumnail" class = "thumnailNews" />
+        <div class = "mx-3">
+            <p class = "myIntro">{{news.introduction}}</p>
+            <button (click)="goToNews(news._id)" type="button" class="btn btn-primary"><i class="fas fa-eye"></i></button>
+            <button (click)="delele(news._id, news.thumnail)" type="button" class="btn btn-danger mx-3"><i class="fas fa-trash-alt"></i></button>
+        </div>
+        
+      </div>
+    </div>
+</div>
+
