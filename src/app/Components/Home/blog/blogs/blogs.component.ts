@@ -19,6 +19,7 @@ export class BlogsComponent implements OnInit {
   ngOnInit(): void {
     this.blogService.getAllBlogs().subscribe(response => {
       this.infoPage = response;
+      
       this.showUsers = this.infoPage.users.reverse();
       if (localStorage.getItem('key'))
         this.allowAddBlog = true;

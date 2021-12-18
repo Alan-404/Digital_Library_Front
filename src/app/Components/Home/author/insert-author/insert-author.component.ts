@@ -11,6 +11,8 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export class InsertAuthorComponent implements OnInit {
   public Editor = ClassicEditor;
 
+  showSpinner = false;
+
   file: string = '';
 
   urlImage: any;
@@ -52,7 +54,7 @@ export class InsertAuthorComponent implements OnInit {
   }
 
   async insertAuthor(){
-    //console.log(this.author);
+    this.showSpinner = true;
     const filePath = '/authors/'+ this.fileName + Math.random();
     await this.storage.upload(filePath, this.file);
 
@@ -61,9 +63,7 @@ export class InsertAuthorComponent implements OnInit {
       await this.authorService.insertAuthor(this.author).subscribe(response => {
         this.listen = response;
         this.showNotice = true;
-        /* setTimeout(() => {
-          this.listen.message = ''
-        }, 4000) */
+        this.showSpinner = false;
       })
     })
   }
